@@ -42,3 +42,9 @@ resource "aws_route" "lms-igw-route" {
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.lms-igw.id
 }
+
+# Route Table - Subnet Association
+resource "aws_route_table_association" "lms-rt-sn" {
+  subnet_id      = aws_subnet.lms-subnet.id
+  route_table_id = aws_route_table.lms-rt.id
+}
