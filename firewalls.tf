@@ -29,3 +29,9 @@ resource "aws_network_acl_rule" "lms-egress" {
   from_port      = 0
   to_port        = 65535
 }
+
+# NACL - Subnet - Association
+resource "aws_network_acl_association" "nacl-subnet" {
+  network_acl_id = aws_network_acl.lms-nacl.id
+  subnet_id      = aws_subnet.lms-subnet.id
+}
