@@ -35,3 +35,10 @@ resource "aws_route_table" "lms-rt" {
     Name = "lms-rt"
   }
 }
+
+# Route for internet
+resource "aws_route" "lms-igw-route" {
+  route_table_id         = aws_route_table.lms-rt.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.lms-igw.id
+}
