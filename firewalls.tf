@@ -35,3 +35,13 @@ resource "aws_network_acl_association" "nacl-subnet" {
   network_acl_id = aws_network_acl.lms-nacl.id
   subnet_id      = aws_subnet.lms-subnet.id
 }
+
+# Security Group
+resource "aws_security_group" "lms-web-sg" {
+  name        = "allow-ssh-http"
+  description = "Allow SSH & HTTP traffic"
+  vpc_id      = aws_vpc.lms.id
+  tags = {
+    Name = "lms-web-sg"
+  }
+}
